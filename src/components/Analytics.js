@@ -4,7 +4,7 @@ import Papa from 'papaparse';
 
 const Analytics = () => {
     const [salaryData, setSalaryData] = useState([]);
-    const [selectedYear, setSelectedYear] = useState(null);
+    // const [selectedYear, setSelectedYear] = useState(null);
     const [jobDetails, setJobDetails] = useState([]);
 
     useEffect(() => {
@@ -19,6 +19,12 @@ const Analytics = () => {
                 });
             });
     }, []);
+
+    useEffect(() => {
+        if (selectedYear) {
+            processJobDataByYear(selectedYear);
+        }
+    }, [selectedYear]);
 
     // Function to process job titles and count by year
     const processJobDataByYear = (year) => {
@@ -36,11 +42,6 @@ const Analytics = () => {
         setJobDetails(jobDetailsArray);
     };
 
-    // Handle row click to display job details for a year
-    const handleRowClick = (year) => {
-        setSelectedYear(year);
-        processJobDataByYear(year);
-    };
 
     // Data for the line chart
     const lineChartData = {

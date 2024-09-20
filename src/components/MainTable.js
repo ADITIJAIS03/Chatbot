@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Papa from 'papaparse';
 
-const MainTable = () => {
+const MainTable = ({onRowClick}) => {
     const [tableData, setTableData] = useState([]);
     const [sortConfig, setSortConfig] = useState({ key: 'year', direction: 'ascending' });
 
@@ -68,7 +68,7 @@ const MainTable = () => {
                 </thead>
                 <tbody>
                     {sortedData.map((row, index) => (
-                        <tr key={index}>
+                        <tr key={index} onClick={() => onRowClick(row.year)}>
                             <td>{row.year}</td>
                             <td>{row.totalJobs}</td>
                             <td>{row.avgSalary}</td>
