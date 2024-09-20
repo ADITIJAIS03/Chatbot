@@ -1,0 +1,48 @@
+.App {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  width: 80%;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  cursor: pointer;
+}
+
+.chat-window {
+  border: 1px solid black;
+  height: 300px;
+  width: 400px;
+  overflow-y: scroll;
+  margin: 20px auto;
+  padding: 10px;
+}
+
+.user-message {
+  text-align: right;
+  background-color: lightblue;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.bot-message {
+  text-align: left;
+  background-color: lightgreen;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 5px;
+}
