@@ -4,7 +4,7 @@ import Papa from 'papaparse';
 
 const Analytics = () => {
     const [salaryData, setSalaryData] = useState([]);
-    // const [selectedYear, setSelectedYear] = useState(null);
+    const [selectedYear] = useState(null);
     const [jobDetails, setJobDetails] = useState([]);
 
     useEffect(() => {
