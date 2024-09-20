@@ -20,27 +20,25 @@ const Analytics = () => {
             });
     }, []);
 
+
+
     useEffect(() => {
         if (selectedYear) {
-            processJobDataByYear(selectedYear);
+            const filteredData = salaryData.filter(row => row.work_year === selectedYear);
+            const jobCounts = filteredData.reduce((acc, row) => {
+                acc[row.job_title] = (acc[row.job_title] || 0) + 1;
+                return acc;
+            }, {});
+
+            const jobDetailsArray = Object.keys(jobCounts).map(jobTitle => ({
+                title: jobTitle,
+                count: jobCounts[jobTitle]
+            }));
+
+            setJobDetails(jobDetailsArray);
         }
-    }, [selectedYear]);
+    }, [selectedYear, salaryData]);  // Add salaryData to dependencies
 
-    // Function to process job titles and count by year
-    const processJobDataByYear = (year) => {
-        const filteredData = salaryData.filter(row => row.work_year === year);
-        const jobCounts = filteredData.reduce((acc, row) => {
-            acc[row.job_title] = (acc[row.job_title] || 0) + 1;
-            return acc;
-        }, {});
-
-        const jobDetailsArray = Object.keys(jobCounts).map(jobTitle => ({
-            title: jobTitle,
-            count: jobCounts[jobTitle]
-        }));
-
-        setJobDetails(jobDetailsArray);
-    };
 
 
     // Data for the line chart
