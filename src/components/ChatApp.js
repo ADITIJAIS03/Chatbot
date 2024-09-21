@@ -17,8 +17,8 @@ const ChatApp = () => {
   };
 
   const fetchLLMResponse = async (input) => {
-    const apiKey = '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';
-    const apiUrl = 'https://api.groq.com/openai/v1.'; // Use Groq's actual API URL for chat
+    const apiKey = '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';
+    const apiUrl = 'https://tough-symbols-speak.loca.lt/'; // Use Groq's actual API URL for chat
 
     try {
       const response = await axios.post(
