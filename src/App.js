@@ -15,6 +15,7 @@ function App() {
       <h1>ML Engineer Salary Data</h1>
       <MainTable onRowClick={handleRowClick} />
       <Analytics selectedYear={selectedYear} />
+      <p>Chatbot</p>
       <ChatApp />
     </div>
   );
