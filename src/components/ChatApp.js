@@ -5,41 +5,42 @@ const ChatApp = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
 
+  // Function to handle sending a message
   const handleSendMessage = async () => {
     const userMessage = { sender: 'user', text: input };
-    setMessages([...messages, userMessage]);
+    setMessages((prevMessages) => [...prevMessages, userMessage]);
 
+    // Fetch bot response from the custom chatbot URL
     const response = await fetchLLMResponse(input);
     const botMessage = { sender: 'bot', text: response };
 
-    setMessages([...messages, userMessage, botMessage]);
-    setInput('');
+    // Update the state with both user and bot messages
+    setMessages((prevMessages) => [...prevMessages, userMessage, botMessage]);
+    setInput('');  // Clear the input field after sending the message
   };
 
+  // Function to fetch LLM response from the custom chatbot API
   const fetchLLMResponse = async (input) => {
-    const apiKey = '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';
-    const apiUrl = '//api.groq.com/openai/v1'; // Use Groq's actual API URL for chat
+    const apiUrl = 'https://tough-symbols-speak.loca.lt/'; // Custom chatbot URL
 
     try {
       const response = await axios.post(
         apiUrl,
         {
-          prompt: input, // User input is sent as a prompt
-          max_tokens: 1000,  // Limit the response length
+          query: input,  // Send user input as the 'query' field
         },
         {
           headers: {
-            'Authorization': `Bearer ${apiKey}`,
             'Content-Type': 'application/json',
           },
         }
       );
 
-      // Assuming Groq's API returns the text response in the "message" field
-      return response.data.message || 'No response from the model';
+      // Assuming the response contains an 'answer' field with the bot's response
+      return response.data.answer || 'No response from the chatbot';
     } catch (error) {
-      console.error('Error fetching LLM response:', error);
-      return 'Error: Could not fetch LLM response';
+      console.error('Error fetching chatbot response:', error);
+      return 'Error: Could not fetch chatbot response';
     }
   };
 

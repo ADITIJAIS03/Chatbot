@@ -46,11 +46,12 @@ th {
   padding: 10px;
   border-radius: 5px;
 }
-.p{
-  text-align: center;
-  background-color: blue;
-  margin: 5px;
-  padding: 2px;
-  border-radius: 5px;
-}
 
+
+h2 {
+  color: darkblue;  /* Change the text color */
+  font-size: 24px;  /* Adjust the font size */
+  margin: 20px 0;  /* Add some spacing above and below */
+  text-align: center;  /* Center-align the heading */
+  font-weight: bold;  /* Make the text bold */
+}
