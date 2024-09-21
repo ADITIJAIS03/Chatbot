@@ -18,7 +18,7 @@ const ChatApp = () => {
 
   const fetchLLMResponse = async (input) => {
     const apiKey = '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';
-    const apiUrl = 'https://chat.groq.com/?_gl=1*2vtjur*_gcl_au*MzAyODY4NDc0LjE3MjY4MTg5MjY.*_ga*MTYzMTAzNDE2NC4xNzI2ODE4OTI3*_ga_4TD0X2GEZG*MTcyNjgxODkyNi4xLjEuMTcyNjgxODkyNi42MC4wLjA.'; // Use Groq's actual API URL for chat
+    const apiUrl = 'https://api.groq.com/openai/v1.'; // Use Groq's actual API URL for chat
 
     try {
       const response = await axios.post(
