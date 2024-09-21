@@ -11,6 +11,11 @@ function App() {
     setSelectedYear(year);
   };
 
+  // Function to redirect to chatbot URL
+  const redirectToChatbot = () => {
+    window.location.href = "https://tough-symbols-speak.loca.lt/";
+  };
+
   return (
     <div className="App">
       <h1>ML Engineer Salary Data</h1>
@@ -24,6 +29,11 @@ function App() {
       {/* Chatbot integration */}
       <h2>Chatbot</h2>
       <ChatApp />
+
+      {/* Button to redirect to chatbot URL */}
+      <button onClick={redirectToChatbot} style={{ marginTop: '20px', padding: '10px 20px', fontSize: '16px' }}>
+        Go to Full Chatbot
+      </button>
     </div>
   );
 }
