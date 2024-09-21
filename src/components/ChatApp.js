@@ -5,41 +5,34 @@ const ChatApp = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
 
+  // Function to send a message
   const handleSendMessage = async () => {
     const userMessage = { sender: 'user', text: input };
     setMessages([...messages, userMessage]);
 
-    const response = await fetchLLMResponse(input);
+    const response = await fetchChatResponse(input);
     const botMessage = { sender: 'bot', text: response };
 
     setMessages([...messages, userMessage, botMessage]);
-    setInput('');
+    setInput(''); // Clear input after sending
   };
 
-  const fetchLLMResponse = async (input) => {
-    const apiKey = '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';
-    const apiUrl = 'https://tough-symbols-speak.loca.lt/'; // Use Groq's actual API URL for chat
+  // Function to fetch response from chatbot API
+  const fetchChatResponse = async (input) => {
+    const apiUrl = 'https://tough-symbols-speak.loca.lt/'; // Replace with your local API URL
 
     try {
-      const response = await axios.post(
-        apiUrl,
-        {
-          prompt: input, // User input is sent as a prompt
-          max_tokens: 1000,  // Limit the response length
+      const response = await axios.post(apiUrl, { prompt: input }, {
+        headers: {
+          'Content-Type': 'application/json',
         },
-        {
-          headers: {
-            'Authorization': `Bearer ${apiKey}`,
-            'Content-Type': 'application/json',
-          },
-        }
-      );
+      });
 
-      // Assuming Groq's API returns the text response in the "message" field
-      return response.data.message || 'No response from the model';
+      // Assuming the API returns the response in the 'message' field
+      return response.data.message || 'No response from chatbot';
     } catch (error) {
-      console.error('Error fetching LLM response:', error);
-      return 'Error: Could not fetch LLM response';
+      console.error('Error fetching chatbot response:', error);
+      return 'Error: Could not fetch response from chatbot';
     }
   };
 
@@ -56,7 +49,7 @@ const ChatApp = () => {
         type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
-        placeholder="Ask something about the data..."
+        placeholder="Ask something..."
       />
       <button onClick={handleSendMessage}>Send</button>
     </div>
